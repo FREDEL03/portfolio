@@ -1,20 +1,27 @@
-import './Education.css';
+import "./Education.css";
 
 export default function Education() {
   const timeline = [
     {
-      period: '2025 — Present',
-      title: 'Web Developer Intern (OJT)',
-      org: 'On-the-Job Training · Olongapo City',
-      desc: 'Working as a web developer intern on real client systems and full-stack features.',
-      tags: ['PHP', 'Angular', 'MySQL'],
+      period: "Sep 11, 2026 — Present",
+      title: "Web Developer",
+      org: "ZIAPLEX Inc. · Olongapo City",
+      desc: "Promoted from OJT to full web developer. Working on real client systems and full-stack features.",
+      tags: ["PHP", "LARAVEL", "MySQL"],
     },
     {
-      period: '2022 — Present',
-      title: 'Bachelor of Science in Information Technology',
-      org: 'Gordon College · Olongapo City, Philippines',
-      desc: 'Currently in 4th year with focus on web systems, database design, and software engineering.',
-      tags: ['4th Year', 'BSIT', 'Capstone'],
+      period: "FEB 26 2026 — Jun 11, 2026",
+      title: "Web Developer Intern (OJT)",
+      org: "On-the-Job Training · Olongapo City",
+      desc: "Completed on-the-job training building real client systems and full-stack features.",
+      tags: ["PHP", "LARAVEL", "MySQL"],
+    },
+    {
+      period: "2022 — 2026",
+      title: "Bachelor of Science in Information Technology",
+      org: "Gordon College · Olongapo City, Philippines",
+      desc: "Graduated with a focus on web systems, database design, and software engineering.",
+      tags: ["BSIT", "Graduate", "Capstone"],
     },
   ];
 
@@ -37,7 +44,9 @@ export default function Education() {
                 <div className="timeline-desc">{item.desc}</div>
                 <div className="timeline-tags">
                   {item.tags.map((tag) => (
-                    <span key={tag} className="timeline-tag">{tag}</span>
+                    <span key={tag} className="timeline-tag">
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>

@@ -14,9 +14,13 @@ export default function Navbar() {
     if (isDark) {
       html.setAttribute("data-theme", "light");
       localStorage.setItem("theme", "light");
+      html.classList.add("theme-changing");
+      setTimeout(() => html.classList.remove("theme-changing"), 800);
     } else {
       html.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
+      html.classList.add("theme-changing");
+      setTimeout(() => html.classList.remove("theme-changing"), 800);
     }
   };
 
@@ -25,7 +29,6 @@ export default function Navbar() {
     "skills",
     "projects",
     "blog",
-    "certificates",
     "education",
     "contact",
   ];
