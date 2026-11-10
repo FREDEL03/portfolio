@@ -5,13 +5,24 @@
 .timeline li {
   display: grid;
   grid-template-columns: 10rem minmax(0, 1fr);
-  gap: 0.25rem 1.5rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--line);
+  gap: 0.5rem 1.5rem;
+  padding: 1.25rem 1.5rem;
 }
 
-.timeline li:first-child {
-  padding-top: 0;
+.timeline li + li {
+  margin-top: 2rem;
+}
+
+/* Date as a sticker */
+.timeline li > p {
+  align-self: start;
+  width: fit-content;
+  padding: 0.1rem 0.7rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 3px solid var(--line);
+  font-size: 0.95rem;
+  transform: rotate(-2deg);
 }
 
 /* Current job gets a live dot */
@@ -22,7 +33,7 @@
   height: 0.55rem;
   margin-right: 0.5rem;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--red);
   animation: live 2s ease-in-out infinite;
 }
 
@@ -32,12 +43,12 @@
   }
   from,
   to {
-    box-shadow: 0 0 0 0 var(--accent);
+    box-shadow: 0 0 0 0 var(--red);
   }
 }
 
 .timeline h3 {
-  font-size: 1.35rem;
+  font-size: 1.7rem;
 }
 
 .timeline-desc {

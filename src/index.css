@@ -7,30 +7,35 @@
 }
 
 :root {
-  /* dark (default): harbor navy + mango */
-  --bg: #0f1c26;
-  --surface: #162735;
-  --ink: #f1ede4;
-  --ink-soft: #a9b4bb;
-  --line: #2a3d4c;
-  --accent: #f4b63f;
-  --accent-ink: #1a1405;
-  --accent-deep: #b07a14;
-  --link: #f4b63f;
+  /* dark = night issue: indigo paper, near-black ink */
+  --bg: #1d1b4d;
+  --panel: #2c2870;
+  --ink: #fff7e0;
+  --ink-soft: #cfcbf0;
+  --line: #0b0a1e;
+  --accent: #ffd23f;
+  --accent-ink: #141414;
+  --red: #e63946;
+  --blue: #2d6cff;
+  --mint: #3ddc97;
+  --dots: rgba(255, 255, 255, 0.07);
+  --focus: #ffd23f;
 
-  --display: "Bricolage Grotesque", system-ui, sans-serif;
-  --body: "Instrument Sans", system-ui, sans-serif;
+  --display: "Bangers", Impact, sans-serif;
+  --body: "Comic Neue", "Comic Sans MS", sans-serif;
 
   color-scheme: dark;
 }
 
+/* light = newsprint */
 html[data-theme="light"] {
-  --bg: #f3f5f4;
-  --surface: #e6ebea;
-  --ink: #10202b;
-  --ink-soft: #4d5c66;
-  --line: #cfd8d8;
-  --link: #875600;
+  --bg: #fff1c9;
+  --panel: #ffffff;
+  --ink: #141414;
+  --ink-soft: #4a4a4a;
+  --line: #141414;
+  --dots: rgba(20, 20, 20, 0.12);
+  --focus: #2d6cff;
   color-scheme: light;
 }
 
@@ -39,22 +44,27 @@ html {
 }
 
 body {
-  background: var(--bg);
+  /* halftone dots */
+  background:
+    radial-gradient(var(--dots) 1.6px, transparent 1.8px) 0 0 / 16px 16px,
+    var(--bg);
   color: var(--ink);
-  font: 1.0625rem/1.65 var(--body);
+  font: 700 1.125rem/1.55 var(--body);
   -webkit-font-smoothing: antialiased;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: color 0.3s;
+}
+
+main {
+  overflow-x: clip;
 }
 
 h1,
 h2,
 h3 {
   font-family: var(--display);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
 }
 
 p {
@@ -64,18 +74,13 @@ p {
 a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
 }
 
-a:hover {
-  color: var(--link);
-}
-
 :focus-visible {
-  outline: 2px solid var(--link);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 
 button,
@@ -85,58 +90,111 @@ textarea {
   color: inherit;
 }
 
-/* Every section after the hero: heading in a left gutter, content beside it */
-.section {
-  max-width: 68rem;
-  margin: 0 auto;
-  padding: 5rem 1.5rem;
-  display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr);
-  gap: 2rem 3rem;
-  border-top: 1px solid var(--line);
-  scroll-margin-top: 4rem;
-}
-
-.section > h2 {
-  font-size: 1.5rem;
-  align-self: start;
-  position: sticky;
-  top: 5.5rem;
-}
-
 .soft {
   color: var(--ink-soft);
 }
 
-.btn {
-  display: inline-block;
-  padding: 0.7rem 1.4rem;
-  border: 0;
-  border-radius: 6px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
+/* Shared comic panel: heavy outline, hard offset shadow */
+.skills > div,
+.project,
+.timeline li,
+.contact-form {
+  background: var(--panel);
+  border: 3px solid var(--line);
+  box-shadow: 6px 6px 0 var(--line);
 }
 
-/* Pressable button: sits on a hard shadow and sinks into it on click */
+/* Speech bubble: always white with black ink, in both themes */
+.bubble {
+  position: relative;
+  background: #fff;
+  color: #141414;
+  border: 3px solid #141414;
+  border-radius: 1.5rem;
+  padding: 1rem 1.4rem;
+}
+
+.bubble::before,
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: 2.2rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: #141414 transparent transparent;
+  border-width: 1.5rem 1.1rem 0 0;
+  bottom: -1.5rem;
+}
+
+.bubble::after {
+  left: calc(2.2rem + 3px);
+  bottom: calc(-1.5rem + 5px);
+  border-color: #fff transparent transparent;
+  border-width: 1.2rem 0.85rem 0 0;
+}
+
+/* Section title: a taped-on label */
+.section {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 2rem 3rem;
+  scroll-margin-top: 5rem;
+}
+
+.section > h2 {
+  font-size: 2rem;
+  align-self: start;
+  justify-self: start;
+  position: sticky;
+  top: 6rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 3px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  padding: 0.2rem 0.9rem;
+  transform: rotate(-2deg);
+}
+
+.section:nth-of-type(even) > h2 {
+  transform: rotate(1.5deg);
+}
+
+/* Pressable button: lifts on hover, slams down on click */
 .btn {
-  box-shadow: 0 4px 0 var(--accent-deep);
+  display: inline-block;
+  padding: 0.5rem 1.4rem;
+  background: var(--red);
+  color: #fff;
+  border: 3px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  font-family: var(--display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
   transition:
-    transform 0.12s,
-    box-shadow 0.12s;
+    transform 0.1s,
+    box-shadow 0.1s;
 }
 
 .btn:hover {
-  color: var(--accent-ink);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 var(--accent-deep);
+  color: #fff;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--line);
 }
 
 .btn:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 var(--accent-deep);
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--line);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 /* Text links get a highlighter sweep on hover */
@@ -144,18 +202,16 @@ main a:not(.btn) {
   background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% /
     0 100%;
   transition:
-    background-size 0.25s,
-    color 0.25s;
+    background-size 0.2s,
+    color 0.2s;
 }
 
 main a:not(.btn):hover {
   background-size: 100% 100%;
   color: var(--accent-ink);
-  text-decoration-color: transparent;
 }
 
-/* Reading progress along the top edge. Native scroll timeline, no JS;
-   browsers without it simply don't show the bar. */
+/* Reading progress along the top edge, native scroll timeline (no JS) */
 .scroll-progress {
   display: none;
 }
@@ -169,7 +225,7 @@ main a:not(.btn):hover {
 @keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(1.5rem);
+    transform: translateY(1.5rem) scale(0.97);
   }
 }
 
@@ -178,16 +234,16 @@ main a:not(.btn):hover {
     display: block;
     position: fixed;
     inset: 0 0 auto 0;
-    height: 3px;
+    height: 6px;
     z-index: 20;
-    background: var(--accent);
+    background: var(--red);
     transform: scaleX(0);
     transform-origin: left;
     animation: grow-x linear both;
     animation-timeline: scroll(root);
   }
 
-  /* Content eases in as it enters the viewport */
+  /* Panels pop in as they enter the viewport */
   .about > *,
   .skills > div,
   .project,
@@ -199,15 +255,10 @@ main a:not(.btn):hover {
   }
 }
 
-.btn:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
 @media (max-width: 800px) {
   .section {
     grid-template-columns: 1fr;
-    padding: 3.5rem 1.25rem;
+    padding: 2.5rem 1.25rem;
     scroll-margin-top: 6.5rem;
   }
 

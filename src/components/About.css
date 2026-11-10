@@ -5,12 +5,21 @@
   align-items: start;
 }
 
-.about-text p {
-  font-size: 1.2rem;
+/* Yellow narration box */
+.about-text {
+  padding: 1.5rem 1.75rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 3px solid var(--line);
+  box-shadow: 6px 6px 0 var(--line);
 }
 
 .about-text p + p {
-  margin-top: 1.25rem;
+  margin-top: 1.1rem;
+}
+
+.about-photo {
+  transform: rotate(2deg);
 }
 
 .about-photo img {
@@ -18,7 +27,8 @@
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 6px;
+  border: 4px solid var(--line);
+  box-shadow: 6px 6px 0 var(--line);
   animation: photo-swap 0.5s ease-out;
 }
 
@@ -30,9 +40,13 @@
 }
 
 .about-photo figcaption {
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  color: var(--ink-soft);
+  margin-top: 1rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 3px solid var(--line);
+  font-size: 0.9rem;
+  font-style: italic;
 }
 
 @media (max-width: 800px) {

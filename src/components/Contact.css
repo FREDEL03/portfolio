@@ -1,10 +1,10 @@
 .contact-lead {
-  font-size: 1.2rem;
+  margin-bottom: 2.25rem;
 }
 
 .contact-form {
-  margin-top: 2rem;
-  max-width: 34rem;
+  max-width: 36rem;
+  padding: 1.5rem;
   display: grid;
   gap: 1.1rem;
   justify-items: start;
@@ -12,8 +12,6 @@
 
 .contact-form label {
   width: 100%;
-  font-size: 0.95rem;
-  color: var(--ink-soft);
 }
 
 .contact-form input,
@@ -21,18 +19,17 @@
   display: block;
   width: 100%;
   margin-top: 0.3rem;
-  padding: 0.65rem 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--surface);
-  color: var(--ink);
+  padding: 0.6rem 0.8rem;
+  background: #fff;
+  color: #141414;
+  border: 3px solid var(--line);
   resize: vertical;
 }
 
 .contact-form input:focus-visible,
 .contact-form textarea:focus-visible {
   outline-offset: 0;
-  border-color: transparent;
+  box-shadow: 4px 4px 0 var(--focus);
 }
 
 .contact-status:empty {

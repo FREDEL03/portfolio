@@ -1,8 +1,18 @@
 .footer {
-  max-width: 68rem;
-  margin: 0 auto;
+  margin-top: 3rem;
   padding: 2rem 1.5rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.9rem;
-  color: var(--ink-soft);
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-top: 4px solid var(--line);
+  text-align: center;
+}
+
+.footer p {
+  margin-inline: auto;
+}
+
+.footer-end {
+  font-family: var(--display);
+  font-size: 2.2rem;
+  letter-spacing: 0.05em;
 }

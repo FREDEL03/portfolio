@@ -30,7 +30,7 @@ export default function Contact() {
       <h2>Contact</h2>
 
       <div className="contact">
-        <p className="contact-lead">
+        <p className="contact-lead bubble">
           Have a project or an opening? Send a message here, or email me at{" "}
           <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
         </p>

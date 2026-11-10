@@ -1,7 +1,9 @@
+.project {
+  padding: 1.5rem;
+}
+
 .project + .project {
-  margin-top: 3.5rem;
-  padding-top: 3.5rem;
-  border-top: 1px solid var(--line);
+  margin-top: 2.5rem;
 }
 
 .project img {
@@ -9,17 +11,27 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 6px;
+  border: 3px solid var(--line);
   margin-bottom: 1.5rem;
 }
 
 .project h3 {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+}
+
+/* Tech list as a rubber stamp */
+.project h3 + p {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.1rem 0.7rem;
+  background: var(--red);
+  color: #fff;
+  border: 3px solid var(--line);
+  transform: rotate(-1.5deg);
 }
 
 .project-desc {
-  margin-top: 1rem;
-  font-size: 1.2rem;
+  margin-top: 1.25rem;
 }
 
 .project details {
@@ -29,16 +41,21 @@
 .project summary {
   cursor: pointer;
   width: fit-content;
-  color: var(--ink-soft);
+  padding: 0.1rem 0.8rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 3px solid var(--line);
+  box-shadow: 3px 3px 0 var(--line);
 }
 
-.project summary:hover {
-  color: var(--ink);
+.project summary:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
 }
 
 .project ul {
-  margin-top: 0.75rem;
-  padding-left: 1.2rem;
+  margin-top: 1rem;
+  padding-left: 1.4rem;
 }
 
 .project li + li {

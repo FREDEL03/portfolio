@@ -17,13 +17,15 @@ export default function Hero() {
   return (
     <>
       <section id="home" className="hero">
+        <p className="hero-caption">Meanwhile, in Olongapo City…</p>
+
         <div className="hero-text">
           <h1>I'm Mark Aducal. I build web systems with Laravel.</h1>
 
-          <p className="hero-lead">
-            Web developer at ZIAPLEX Inc. in Olongapo City and a BSIT graduate
-            of Gordon College. So far I've shipped an online store for LeydiBoss
-            and a clinic system for a skincare salon.
+          <p className="hero-lead bubble">
+            Web developer at ZIAPLEX Inc. and a BSIT graduate of Gordon College.
+            So far I've shipped an online store for LeydiBoss and a clinic
+            system for a skincare salon.
           </p>
 
           <div className="hero-actions">
