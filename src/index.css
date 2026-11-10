@@ -273,8 +273,20 @@ main a:not(.btn):hover {
     scroll-behavior: auto;
   }
 
-  * {
+  /* Entrance and scroll-driven motion off. The slow decorative loops
+     (ticker, spinning stamp) keep running. */
+  .hero-text > *,
+  .hero-photo img,
+  .scroll-progress,
+  .about > *,
+  .skills > div,
+  .project,
+  .timeline li,
+  .contact > * {
     animation: none !important;
+  }
+
+  * {
     transition: none !important;
   }
 }
