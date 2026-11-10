@@ -59,16 +59,10 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section section-wide">
       <h2>Projects</h2>
 
-      {/* tabIndex lets keyboard users scroll the strip with the arrow keys */}
-      <div
-        className="projects"
-        role="region"
-        aria-label="Projects"
-        tabIndex={0}
-      >
+      <div className="projects">
         {projects.map((p) => (
           <article key={p.title} className="project">
             {/* Screenshot is optional: drop a file in public/projects/ */}

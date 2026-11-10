@@ -160,6 +160,15 @@ textarea {
   transform: rotate(-2deg);
 }
 
+/* Full-width section: title sits above the content instead of beside it */
+.section-wide {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.section-wide > h2 {
+  position: static;
+}
+
 .section:nth-of-type(even) > h2 {
   transform: rotate(1.5deg);
 }
@@ -247,7 +256,7 @@ main a:not(.btn):hover {
   /* Panels pop in as they enter the viewport */
   .about > *,
   .skills > div,
-  .projects, /* the strip itself: cards inside it can't use the page's scroll timeline */
+  .project,
   .timeline li,
   .contact > * {
     animation: reveal linear both;
@@ -280,7 +289,7 @@ main a:not(.btn):hover {
   .scroll-progress,
   .about > *,
   .skills > div,
-  .projects,
+  .project,
   .timeline li,
   .contact > * {
     animation: none !important;
