@@ -1,88 +1,48 @@
 import { useState } from "react";
 import "./Navbar.css";
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+const links = [
+  ["about", "About"],
+  ["skills", "Skills"],
+  ["projects", "Work"],
+  ["education", "Experience"],
+  ["contact", "Contact"],
+];
 
-  const toggleMobileNav = () => setIsOpen(!isOpen);
-  const closeMobileNav = () => setIsOpen(false);
+export default function Navbar() {
+  // main.jsx sets data-theme from localStorage before render
+  const [isDark, setIsDark] = useState(
+    () => document.documentElement.getAttribute("data-theme") !== "light",
+  );
 
   const toggleTheme = () => {
+    const next = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
     setIsDark(!isDark);
-    const html = document.documentElement;
-    if (isDark) {
-      html.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-      html.classList.add("theme-changing");
-      setTimeout(() => html.classList.remove("theme-changing"), 800);
-    } else {
-      html.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-      html.classList.add("theme-changing");
-      setTimeout(() => html.classList.remove("theme-changing"), 800);
-    }
   };
 
-  const navLinks = [
-    "about",
-    "skills",
-    "projects",
-    "blog",
-    "education",
-    "contact",
-  ];
-
   return (
-    <nav id="navbar" className="navbar">
-      <div className="navbar-container">
-        <a href="#" className="navbar-logo">
-          mark<span className="accent">.</span>aducal
-          <span className="accent">.</span>dev
-        </a>
+    <nav className="navbar" aria-label="Main">
+      <a href="#home" className="navbar-name">
+        Mark Aducal
+      </a>
 
-        <ul className="navbar-links">
-          {navLinks.map((link) => (
-            <li key={link}>
-              <a href={`#${link}`}>
-                {link.charAt(0).toUpperCase() + link.slice(1)}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <ul className="navbar-links">
+        {links.map(([id, label]) => (
+          <li key={id}>
+            <a href={`#${id}`}>{label}</a>
+          </li>
+        ))}
+      </ul>
 
-        <div className="navbar-actions">
-          <button
-            id="themeToggle"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            <i className={`fa-solid fa-${isDark ? "moon" : "sun"}`}></i>
-          </button>
-
-          <button
-            id="hamburger"
-            className={`hamburger ${isOpen ? "active" : ""}`}
-            onClick={toggleMobileNav}
-            aria-label="Open menu"
-          >
-            <span className="bar1"></span>
-            <span className="bar2"></span>
-            <span className="bar3"></span>
-          </button>
-        </div>
-      </div>
-
-      {isOpen && (
-        <div id="navMobile" className="nav-mobile">
-          {navLinks.map((link) => (
-            <a key={link} href={`#${link}`} onClick={closeMobileNav}>
-              {link.charAt(0).toUpperCase() + link.slice(1)}
-            </a>
-          ))}
-        </div>
-      )}
+      <button
+        className="theme-toggle"
+        onClick={toggleTheme}
+        aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+      >
+        <i className={`fa-solid fa-${isDark ? "moon" : "sun"}`}></i>
+      </button>
     </nav>
   );
 }

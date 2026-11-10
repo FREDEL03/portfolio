@@ -1,133 +1,81 @@
-import { useState } from 'react';
-import './Contact.css';
+import { useState } from "react";
+import "./Contact.css";
+
+const EMAIL = "aducalremegio03@gmail.com";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
-  const contacts = [
-    { href: 'mailto:aducalremegio03@gmail.com', icon: 'fa-envelope', label: 'Email', value: 'aducalremegio03@gmail.com', fa: 'solid' },
-    { href: 'http://github.com/MARKYYY03', icon: 'fa-github', label: 'GitHub', value: 'github.com/markaducal', fa: 'brands' },
-    { href: 'https://www.linkedin.com/in/mark-aducal-9b952025b/', icon: 'fa-linkedin-in', label: 'LinkedIn', value: 'linkedin.com/in/markaducal', fa: 'brands' },
-  ];
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({ ...prev, [id]: value }));
-  };
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
     try {
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!formData.name || !formData.email || !formData.message) {
-        alert('Please fill all fields');
-        return;
-      }
-      if (!emailRegex.test(formData.email)) {
-        alert('Please enter a valid email');
-        return;
-      }
-
-      // Create FormData for submission
-      const form = new FormData();
-      form.append('name', formData.name);
-      form.append('email', formData.email);
-      form.append('message', formData.message);
-
-      // Send email via FormSubmit (works without backend)
-      const response = await fetch('https://formsubmit.co/aducalremegio03@gmail.com', {
-        method: 'POST',
-        body: form,
+      // FormSubmit: no backend needed
+      const res = await fetch(`https://formsubmit.co/${EMAIL}`, {
+        method: "POST",
+        body: new FormData(form),
       });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setSubmitted(false), 5000);
-      } else {
-        alert('Error sending message. Please try again.');
-      }
+      if (!res.ok) throw new Error(`FormSubmit responded ${res.status}`);
+      form.reset();
+      setStatus("sent");
     } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Error sending message. Please try again.');
+      console.error(error);
+      setStatus("error");
     }
   };
 
   return (
-    <section id="contact" className="contact page-reveal">
-      <div className="contact-container">
-        <div className="contact-header">
-          <p className="section-label">Get In Touch</p>
-          <h2 className="section-title">Let's Work Together</h2>
-        </div>
+    <section id="contact" className="section">
+      <h2>Contact</h2>
 
-        <div className="contact-grid">
-          <div className="contact-info">
-            {contacts.map((contact) => (
-              <a
-                key={contact.label}
-                href={contact.href}
-                target={contact.href.startsWith('mailto') ? undefined : '_blank'}
-                rel={contact.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                className="contact-card"
-              >
-                <div className="contact-icon">
-                  <i className={`fa-${contact.fa} ${contact.icon}`}></i>
-                </div>
-                <div>
-                  <div className="contact-label">{contact.label}</div>
-                  <div className="contact-value">{contact.value}</div>
-                </div>
-              </a>
-            ))}
-          </div>
+      <div className="contact">
+        <p className="contact-lead">
+          Have a project or an opening? Send a message here, or email me at{" "}
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+        </p>
 
-          <div className="contact-form-container">
-            {!submitted ? (
-              <>
-                <div className="form-group">
-                  <label htmlFor="fname">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Juan dela Cruz"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="femail">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="juan@email.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="fmessage">Message</label>
-                  <textarea
-                    id="message"
-                    rows="5"
-                    placeholder="Tell me about your project..."
-                    value={formData.message}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-                <button onClick={handleSubmit} className="btn btn-primary">
-                  <i className="fa-solid fa-paper-plane"></i> Send Message
-                </button>
-              </>
-            ) : (
-              <div className="form-success">
-                <i className="fa-solid fa-circle-check"></i>
-                <strong>Message sent! 🎉</strong>
-              </div>
-            )}
-          </div>
-        </div>
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <label>
+            Your name
+            <input type="text" name="name" autoComplete="name" required />
+          </label>
+          <label>
+            Your email
+            <input type="email" name="email" autoComplete="email" required />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <button className="btn" disabled={status === "sending"}>
+            {status === "sending" ? "Sending…" : "Send message"}
+          </button>
+
+          <p role="status" className="contact-status">
+            {status === "sent" && "Message sent. I'll reply by email."}
+            {status === "error" &&
+              `The message didn't send. Try again, or email ${EMAIL} directly.`}
+          </p>
+        </form>
+
+        <p className="contact-links">
+          <a
+            href="https://github.com/MARKYYY03"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/mark-aducal-9b952025b/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </p>
       </div>
     </section>
   );
