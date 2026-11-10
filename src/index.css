@@ -7,19 +7,17 @@
 }
 
 :root {
-  /* dark = night issue: indigo paper, near-black ink */
-  --bg: #1d1b4d;
-  --panel: #2c2870;
-  --ink: #fff7e0;
-  --ink-soft: #cfcbf0;
-  --line: #0b0a1e;
-  --accent: #ffd23f;
-  --accent-ink: #141414;
-  --red: #e63946;
-  --blue: #2d6cff;
-  --mint: #3ddc97;
+  /* dark = inverted ink: white lines on black paper */
+  --bg: #111111;
+  --panel: #1c1c1c;
+  --ink: #f2f2f2;
+  --ink-soft: #b5b5b5;
+  --line: #f2f2f2;
+  --accent: #f2f2f2; /* solid fills (labels, buttons): the inverse of the page */
+  --accent-ink: #111111;
+  --tone: #333333; /* quiet grey fill */
   --dots: rgba(255, 255, 255, 0.07);
-  --focus: #ffd23f;
+  --focus: #ffffff;
 
   --display: "Bangers", Impact, sans-serif;
   --body: "Comic Neue", "Comic Sans MS", sans-serif;
@@ -29,13 +27,16 @@
 
 /* light = newsprint */
 html[data-theme="light"] {
-  --bg: #fff1c9;
+  --bg: #f4f4f4;
   --panel: #ffffff;
-  --ink: #141414;
+  --ink: #111111;
   --ink-soft: #4a4a4a;
-  --line: #141414;
-  --dots: rgba(20, 20, 20, 0.12);
-  --focus: #2d6cff;
+  --line: #111111;
+  --accent: #111111;
+  --accent-ink: #f4f4f4;
+  --tone: #dcdcdc;
+  --dots: rgba(0, 0, 0, 0.12);
+  --focus: #111111;
   color-scheme: light;
 }
 
@@ -167,8 +168,8 @@ textarea {
 .btn {
   display: inline-block;
   padding: 0.5rem 1.4rem;
-  background: var(--red);
-  color: #fff;
+  background: var(--accent);
+  color: var(--accent-ink);
   border: 3px solid var(--line);
   box-shadow: 4px 4px 0 var(--line);
   font-family: var(--display);
@@ -182,7 +183,7 @@ textarea {
 }
 
 .btn:hover {
-  color: #fff;
+  color: var(--accent-ink);
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--line);
 }
@@ -236,7 +237,7 @@ main a:not(.btn):hover {
     inset: 0 0 auto 0;
     height: 6px;
     z-index: 20;
-    background: var(--red);
+    background: var(--bg); /* contrasts with the navbar fill in both themes */
     transform: scaleX(0);
     transform-origin: left;
     animation: grow-x linear both;

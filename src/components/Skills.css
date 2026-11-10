@@ -16,25 +16,14 @@
   padding: 1rem;
 }
 
-/* One ink color per category header */
-.skills > div:nth-child(1) dt {
-  background: var(--blue);
-  color: #fff;
-}
-
-.skills > div:nth-child(2) dt {
-  background: var(--red);
-  color: #fff;
-}
-
-.skills > div:nth-child(3) dt {
+/* Headers alternate solid and grey */
+.skills > div:nth-child(odd) dt {
   background: var(--accent);
   color: var(--accent-ink);
 }
 
-.skills > div:nth-child(4) dt {
-  background: var(--mint);
-  color: var(--accent-ink);
+.skills > div:nth-child(even) dt {
+  background: var(--tone);
 }
 
 @media (max-width: 600px) {

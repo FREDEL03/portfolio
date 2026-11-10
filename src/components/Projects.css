@@ -24,8 +24,8 @@
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.1rem 0.7rem;
-  background: var(--red);
-  color: #fff;
+  background: var(--accent);
+  color: var(--accent-ink);
   border: 3px solid var(--line);
   transform: rotate(-1.5deg);
 }

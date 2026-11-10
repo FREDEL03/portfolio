@@ -33,7 +33,7 @@
   height: 0.55rem;
   margin-right: 0.5rem;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--accent-ink);
   animation: live 2s ease-in-out infinite;
 }
 
@@ -43,7 +43,7 @@
   }
   from,
   to {
-    box-shadow: 0 0 0 0 var(--red);
+    box-shadow: 0 0 0 0 var(--accent-ink);
   }
 }
 
