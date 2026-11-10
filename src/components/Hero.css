@@ -109,6 +109,43 @@
   object-position: bottom;
 }
 
+/* Spinning stack stamp, pinned to the burst's top-left point */
+.hero-badge {
+  position: absolute;
+  z-index: 2;
+  top: -1.5rem;
+  left: -2rem;
+  width: 8rem;
+  height: 8rem;
+  filter: drop-shadow(4px 4px 0 var(--line));
+  animation: spin 18s linear infinite;
+}
+
+.hero-badge circle {
+  fill: var(--accent);
+  stroke: var(--line);
+  stroke-width: 4;
+}
+
+.hero-badge text {
+  fill: var(--accent-ink);
+  font-family: var(--display);
+}
+
+.badge-ring-text {
+  font-size: 17px;
+}
+
+.badge-center {
+  font-size: 40px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Page-load sequence: headline, bubble, actions, then the photo */
 .hero-text > *,
 .hero-photo img {
@@ -196,5 +233,11 @@
   .hero-photo {
     width: min(16rem, 75%);
     justify-self: center;
+  }
+
+  .hero-badge {
+    width: 6rem;
+    height: 6rem;
+    left: -1rem;
   }
 }

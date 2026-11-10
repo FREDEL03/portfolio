@@ -52,6 +52,29 @@ export default function Hero() {
 
         <div className="hero-photo">
           <img src={profileImage} alt="Mark Aducal" />
+
+          {/* Decorative spinning stamp with the stack written around the rim */}
+          <svg className="hero-badge" viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <path
+                id="badge-ring"
+                d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"
+              />
+            </defs>
+            <circle cx="100" cy="100" r="96" />
+            <text className="badge-ring-text">
+              <textPath
+                href="#badge-ring"
+                textLength="480"
+                lengthAdjust="spacing"
+              >
+                {stack.join(" • ")} •{" "}
+              </textPath>
+            </text>
+            <text className="badge-center" x="100" y="118" textAnchor="middle">
+              DEV
+            </text>
+          </svg>
         </div>
       </section>
 
