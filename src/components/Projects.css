@@ -20,7 +20,7 @@
 }
 
 /* Tech list as a rubber stamp */
-.project h3 + p {
+.project-tech {
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.1rem 0.7rem;

@@ -31,6 +31,30 @@ const projects = [
     liveUrl: "https://skinclinic.vercel.app/login",
     githubUrl: "https://github.com/MARKADUCAL/relevare",
   },
+  {
+    title: "AI Ticket-to-PR",
+    image: "/projects/ai-ticket-to-pr.png",
+    desc: "Turns a ticket into Git workflow output. Upload a screenshot of a Jira, Linear, or GitHub ticket, or type or speak it, and it writes the branch name, commit messages, and PR description.",
+    features: [
+      "Upload a ticket screenshot (PNG, JPG, or WebP, up to 5 MB)",
+      "Or describe the ticket by typing or voice",
+      "Generates branch names, commit messages, and a PR description",
+    ],
+    tech: "Google Gemini 2.5 Flash",
+    liveUrl: "https://ai-ticket-to-pr.vercel.app/",
+  },
+  {
+    title: "DocuChat AI",
+    image: "/projects/docuchat-ai.png",
+    desc: "A document intelligence chatbot: a web app for asking questions about your documents.",
+    liveUrl: "https://ai-document-chatbot-brown.vercel.app/",
+  },
+  {
+    title: "DevOS",
+    image: "/projects/devos.png",
+    desc: "A developer productivity dashboard with a sign-in screen.",
+    liveUrl: "https://devos-five.vercel.app/",
+  },
 ];
 
 export default function Projects() {
@@ -49,25 +73,29 @@ export default function Projects() {
             />
 
             <h3>{p.title}</h3>
-            <p className="soft">{p.tech}</p>
+            {p.tech && <p className="project-tech">{p.tech}</p>}
             <p className="project-desc">{p.desc}</p>
 
-            <details>
-              <summary>What's in it</summary>
-              <ul>
-                {p.features.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-            </details>
+            {p.features && (
+              <details>
+                <summary>What's in it</summary>
+                <ul>
+                  {p.features.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+              </details>
+            )}
 
             <p className="project-links">
               <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
                 Visit the site
               </a>
-              <a href={p.githubUrl} target="_blank" rel="noopener noreferrer">
-                Source on GitHub
-              </a>
+              {p.githubUrl && (
+                <a href={p.githubUrl} target="_blank" rel="noopener noreferrer">
+                  Source on GitHub
+                </a>
+              )}
             </p>
           </article>
         ))}
