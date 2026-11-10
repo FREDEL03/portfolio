@@ -4,7 +4,7 @@ import "./Navbar.css";
 const links = [
   ["about", "About"],
   ["skills", "Skills"],
-  ["projects", "Work"],
+  ["projects", "Projects"],
   ["education", "Experience"],
   ["contact", "Contact"],
 ];
