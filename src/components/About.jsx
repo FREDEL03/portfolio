@@ -39,6 +39,7 @@ export default function About() {
 
         <figure className="about-photo">
           <img
+            key={dark ? "barong" : "toga"} /* remount so the swap fades in */
             src={dark ? barongPhoto : togaPhoto}
             alt={`Mark Aducal in ${dark ? "a barong" : "a graduation toga"}`}
           />

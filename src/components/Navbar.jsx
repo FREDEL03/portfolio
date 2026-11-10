@@ -41,7 +41,7 @@ export default function Navbar() {
         onClick={toggleTheme}
         aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       >
-        <i className={`fa-solid fa-${isDark ? "moon" : "sun"}`}></i>
+        <i key={isDark ? "moon" : "sun"} className={`fa-solid fa-${isDark ? "moon" : "sun"}`}></i>
       </button>
     </nav>
   );

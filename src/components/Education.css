@@ -14,6 +14,28 @@
   padding-top: 0;
 }
 
+/* Current job gets a live dot */
+.timeline li:first-child > p::before {
+  content: "";
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: live 2s ease-in-out infinite;
+}
+
+@keyframes live {
+  50% {
+    box-shadow: 0 0 0 0.35rem transparent;
+  }
+  from,
+  to {
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+}
+
 .timeline h3 {
   font-size: 1.35rem;
 }

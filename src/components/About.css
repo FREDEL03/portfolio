@@ -19,6 +19,14 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 6px;
+  animation: photo-swap 0.5s ease-out;
+}
+
+@keyframes photo-swap {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
 }
 
 .about-photo figcaption {

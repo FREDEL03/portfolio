@@ -15,6 +15,7 @@
   --line: #2a3d4c;
   --accent: #f4b63f;
   --accent-ink: #1a1405;
+  --accent-deep: #b07a14;
   --link: #f4b63f;
 
   --display: "Bricolage Grotesque", system-ui, sans-serif;
@@ -119,9 +120,83 @@ textarea {
   cursor: pointer;
 }
 
+/* Pressable button: sits on a hard shadow and sinks into it on click */
+.btn {
+  box-shadow: 0 4px 0 var(--accent-deep);
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
+}
+
 .btn:hover {
   color: var(--accent-ink);
-  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--accent-deep);
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--accent-deep);
+}
+
+/* Text links get a highlighter sweep on hover */
+main a:not(.btn) {
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% /
+    0 100%;
+  transition:
+    background-size 0.25s,
+    color 0.25s;
+}
+
+main a:not(.btn):hover {
+  background-size: 100% 100%;
+  color: var(--accent-ink);
+  text-decoration-color: transparent;
+}
+
+/* Reading progress along the top edge. Native scroll timeline, no JS;
+   browsers without it simply don't show the bar. */
+.scroll-progress {
+  display: none;
+}
+
+@keyframes grow-x {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .scroll-progress {
+    display: block;
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 3px;
+    z-index: 20;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: grow-x linear both;
+    animation-timeline: scroll(root);
+  }
+
+  /* Content eases in as it enters the viewport */
+  .about > *,
+  .skills > div,
+  .project,
+  .timeline li,
+  .contact > * {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 9rem;
+  }
 }
 
 .btn:disabled {
