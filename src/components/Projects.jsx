@@ -62,7 +62,13 @@ export default function Projects() {
     <section id="projects" className="section">
       <h2>Work</h2>
 
-      <div className="projects">
+      {/* tabIndex lets keyboard users scroll the strip with the arrow keys */}
+      <div
+        className="projects"
+        role="region"
+        aria-label="Projects"
+        tabIndex={0}
+      >
         {projects.map((p) => (
           <article key={p.title} className="project">
             {/* Screenshot is optional: drop a file in public/projects/ */}

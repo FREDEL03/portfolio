@@ -247,7 +247,7 @@ main a:not(.btn):hover {
   /* Panels pop in as they enter the viewport */
   .about > *,
   .skills > div,
-  .project,
+  .projects, /* the strip itself: cards inside it can't use the page's scroll timeline */
   .timeline li,
   .contact > * {
     animation: reveal linear both;
@@ -280,7 +280,7 @@ main a:not(.btn):hover {
   .scroll-progress,
   .about > *,
   .skills > div,
-  .project,
+  .projects,
   .timeline li,
   .contact > * {
     animation: none !important;

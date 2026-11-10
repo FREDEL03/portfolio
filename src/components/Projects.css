@@ -1,9 +1,18 @@
-.project {
-  padding: 1.5rem;
+/* Horizontal strip: swipe or scroll sideways, cards snap into place */
+.projects {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* room for the cards' hard shadows, which overflow clipping would cut */
+  padding: 0.25rem 0.5rem 1.5rem 0.25rem;
+  scrollbar-color: var(--line) var(--tone);
 }
 
-.project + .project {
-  margin-top: 2.5rem;
+.project {
+  flex: 0 0 min(22rem, 85%);
+  scroll-snap-align: start;
+  padding: 1.5rem;
 }
 
 .project img {
