@@ -9,13 +9,41 @@
   padding: 1.5rem;
 }
 
-.project img {
+.project-shot {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  background: none;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.project-shot img {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 10; /* matches the 1280x800 screenshots, so nothing is cropped */
   object-fit: contain;
   border: 3px solid var(--line);
-  margin-bottom: 1.5rem;
+}
+
+.lightbox {
+  max-width: 95vw;
+  max-height: 95vh;
+  padding: 0;
+  border: 3px solid var(--line);
+  background: transparent;
+  cursor: zoom-out;
+}
+
+.lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.lightbox img {
+  display: block;
+  max-width: 95vw;
+  max-height: 95vh;
 }
 
 .project h3 {

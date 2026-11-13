@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import "./Projects.css";
 
 const projects = [
@@ -58,6 +59,13 @@ const projects = [
 ];
 
 export default function Projects() {
+  const dialog = useRef(null);
+  const [shot, setShot] = useState(null);
+  const open = (p) => {
+    setShot(p);
+    dialog.current.showModal();
+  };
+
   return (
     <section id="projects" className="section section-wide">
       <h2>Projects</h2>
@@ -66,11 +74,18 @@ export default function Projects() {
         {projects.map((p) => (
           <article key={p.title} className="project">
             {/* Screenshot is optional: drop a file in public/projects/ */}
-            <img
-              src={p.image}
-              alt={`${p.title} screenshot`}
-              onError={(e) => e.currentTarget.remove()}
-            />
+            <button
+              type="button"
+              className="project-shot"
+              onClick={() => open(p)}
+              aria-label={`View ${p.title} screenshot full size`}
+            >
+              <img
+                src={p.image}
+                alt={`${p.title} screenshot`}
+                onError={(e) => e.currentTarget.parentElement.remove()}
+              />
+            </button>
 
             <h3>{p.title}</h3>
             {p.tech && <p className="project-tech">{p.tech}</p>}
@@ -100,6 +115,15 @@ export default function Projects() {
           </article>
         ))}
       </div>
+
+      {/* Native dialog: Esc closes it; clicking anywhere closes it too */}
+      <dialog
+        ref={dialog}
+        className="lightbox"
+        onClick={() => dialog.current.close()}
+      >
+        {shot && <img src={shot.image} alt={`${shot.title} screenshot`} />}
+      </dialog>
     </section>
   );
 }
