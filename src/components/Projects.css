@@ -12,8 +12,8 @@
 .project img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  aspect-ratio: 16 / 10; /* matches the 1280x800 screenshots, so nothing is cropped */
+  object-fit: contain;
   border: 3px solid var(--line);
   margin-bottom: 1.5rem;
 }
