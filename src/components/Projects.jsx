@@ -122,6 +122,9 @@ export default function Projects() {
         className="lightbox"
         onClick={() => dialog.current.close()}
       >
+        <button type="button" className="lightbox-close" aria-label="Close">
+          ✕
+        </button>
         {shot && <img src={shot.image} alt={`${shot.title} screenshot`} />}
       </dialog>
     </section>

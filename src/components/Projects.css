@@ -37,6 +37,25 @@
   cursor: zoom-out;
 }
 
+/* Lock page scroll while the lightbox is open */
+html:has(.lightbox[open]) {
+  overflow: hidden;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 3px solid var(--line);
+  cursor: pointer;
+}
+
 .lightbox::backdrop {
   background: rgba(0, 0, 0, 0.85);
 }
