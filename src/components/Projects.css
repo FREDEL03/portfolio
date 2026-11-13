@@ -28,6 +28,7 @@
 }
 
 .lightbox {
+  margin: auto; /* global reset zeroes the dialog's default centering */
   max-width: 95vw;
   max-height: 95vh;
   padding: 0;
